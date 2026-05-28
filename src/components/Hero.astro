@@ -1,0 +1,120 @@
+---
+---
+<section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  
+  <!-- Dynamic Background elements -->
+  <div class="absolute inset-0 z-0 overflow-hidden bg-brand-dark">
+    <!-- Two identical videos for cross-fading to create a seamless loop -->
+    <video id="hero-video-1" muted playsinline class="absolute inset-0 w-full h-full object-cover scale-[1.15] opacity-100 transition-opacity duration-[2000ms] ease-in-out">
+      <source src="/src/assets/herovideo.mp4" type="video/mp4" />
+    </video>
+    <video id="hero-video-2" muted playsinline class="absolute inset-0 w-full h-full object-cover scale-[1.15] opacity-0 transition-opacity duration-[2000ms] ease-in-out">
+      <source src="/src/assets/herovideo.mp4" type="video/mp4" />
+    </video>
+    
+    <!-- Dark overlay for text readability -->
+    <div class="absolute inset-0 bg-brand-dark/60"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass mb-8 animate-fade-in-up">
+      <span class="flex h-2 w-2 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan"></span>
+      </span>
+      <span class="text-sm font-medium text-slate-300 tracking-wide uppercase">Más de 10 Años de Experiencia</span>
+    </div>
+
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight mb-6 animate-fade-in-up cmyk-glitch" style="animation-delay: 100ms;">
+      Innovación de <br/>
+      <span class="text-gradient">impacto absoluto.</span>
+    </h1>
+    
+    <p class="mt-4 text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light mb-10 animate-fade-in-up leading-relaxed" style="animation-delay: 200ms;">
+      Transformamos la visión de tu empresa en realidades visuales extraordinarias. Somos la agencia líder en innovación, impresión de gran formato y señalética de alta gama.
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 300ms;">
+      <a href="#contacto" class="magnetic group relative px-8 py-4 border border-white/20 glass text-white font-bold rounded-full overflow-hidden inline-flex justify-center items-center hover:border-brand-magenta transition-colors duration-300">
+        <span class="relative z-10">Cotizar Proyecto</span>
+      </a>
+      
+      <a href="#portafolio" class="magnetic px-8 py-4 border border-white/5 bg-white/5 backdrop-blur-md text-white font-bold rounded-full hover:bg-white/10 hover:border-brand-cyan transition-colors inline-flex justify-center items-center">
+        Ver Portafolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Cross-Fade Seamless Loop Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video1 = document.getElementById('hero-video-1') as HTMLVideoElement;
+    const video2 = document.getElementById('hero-video-2') as HTMLVideoElement;
+    if (!video1 || !video2) return;
+
+    // Cross-fade duration in seconds
+    const fadeDuration = 2.0;
+    let isVideo1Active = true;
+
+    // Start only video1
+    video1.play();
+    video2.pause();
+
+    video1.addEventListener('timeupdate', () => {
+      // When video 1 is near the end, start video 2 and fade
+      if (isVideo1Active && video1.duration && video1.currentTime >= video1.duration - fadeDuration) {
+        isVideo1Active = false;
+        video2.currentTime = 0;
+        video2.play();
+        
+        // CSS transition handles the fade out
+        video1.style.opacity = '0';
+        video2.style.opacity = '1';
+        
+        // Reset video1 after fade
+        setTimeout(() => {
+          video1.pause();
+        }, fadeDuration * 1000);
+      }
+    });
+
+    video2.addEventListener('timeupdate', () => {
+      // When video 2 is near the end, start video 1 and fade
+      if (!isVideo1Active && video2.duration && video2.currentTime >= video2.duration - fadeDuration) {
+        isVideo1Active = true;
+        video1.currentTime = 0;
+        video1.play();
+        
+        // CSS transition handles the fade out
+        video2.style.opacity = '0';
+        video1.style.opacity = '1';
+        
+        // Reset video2 after fade
+        setTimeout(() => {
+          video2.pause();
+        }, fadeDuration * 1000);
+      }
+    });
+  });
+</script>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mask-image-radial-gradient {
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+</style>

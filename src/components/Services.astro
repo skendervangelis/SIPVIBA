@@ -1,0 +1,103 @@
+---
+const services = [
+  {
+    title: "Impresión de Lona Premium",
+    description: "Resolución fotográfica y materiales ultra-resistentes garantizados. Más de una década perfeccionando el arte del gran formato para que tu marca destaque.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>`,
+    color: "from-[#00e5ff] to-[#0077ff]",
+    borderColor: "group-hover:border-[#00e5ff]",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)]",
+    image: "/images/service_lona.png"
+  },
+  {
+    title: "Vinil y Forrados",
+    description: "Transformamos cualquier superficie. Desde flotillas corporativas hasta diseño de interiores, utilizando adhesivos de alta gama y recortes precisos.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>`,
+    color: "from-[#ff00ff] to-[#7700ff]",
+    borderColor: "group-hover:border-[#ff00ff]",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(255,0,255,0.3)]",
+    image: "/images/service_vinil.png"
+  },
+  {
+    title: "Playeras y Sublimación",
+    description: "Personalización textil de la más alta calidad. Desde uniformes empresariales hasta artículos publicitarios con colores vibrantes mediante sublimación y recorte de vinil.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a8.86 8.86 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>`,
+    color: "from-[#00ff88] to-[#008855]",
+    borderColor: "group-hover:border-[#00ff88]",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(0,255,136,0.3)]",
+    image: "/images/service_sublimacion.png"
+  },
+  {
+    title: "Instalación Profesional",
+    description: "Nuestro equipo de técnicos especializados garantiza que cada impresión, vinil o lona se monte de manera impecable y segura en cualquier altura.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 Z"/></svg>`,
+    color: "from-[#ffdd00] to-[#ff8800]",
+    borderColor: "group-hover:border-[#ffdd00]",
+    glowColor: "group-hover:shadow-[0_0_30px_rgba(255,221,0,0.3)]",
+    image: "/images/service_instalacion.png"
+  }
+];
+---
+
+<section id="servicios" class="py-32 relative overflow-hidden bg-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center mb-20 relative">
+      <div class="inline-block px-8">
+        <h2 class="text-sm font-bold text-brand-cyan tracking-[0.2em] uppercase mb-3 flex items-center justify-center gap-3">
+          <span class="w-1.5 h-1.5 bg-brand-cyan rounded-full animate-pulse shadow-[0_0_8px_#00E5FF]"></span>
+          Catálogo de Producción
+        </h2>
+        <h3 class="text-4xl md:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/60 tracking-tight drop-shadow-xl uppercase">Nuestros Servicios</h3>
+        <p class="text-xl text-[#94A3B8] max-w-2xl mx-auto font-light leading-relaxed">
+          Calidad visual sin compromisos. Utilizamos sustratos premium y equipos de última generación para dar vida a tus ideas.
+        </p>
+      </div>
+    </div>
+
+    <!-- CMYK inspired grid layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      {services.map((service, index) => (
+        <div class={`group relative p-[1px] rounded-3xl bg-gradient-to-b from-white/20 to-white/5 overflow-hidden transition-all duration-500 hover:scale-[1.02] cursor-default shadow-2xl`}>
+          
+          <!-- Animated Neon Border -->
+          <div class={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+          
+          <!-- Glassmorphic Card Body -->
+          <div class={`relative h-full bg-white/5 backdrop-blur-2xl rounded-3xl flex flex-col items-start border border-white/10 ${service.borderColor} transition-colors duration-500 ${service.glowColor} overflow-hidden`}>
+            
+            <!-- Service Image Background -->
+            <div class="absolute inset-0 z-0 overflow-hidden mix-blend-overlay">
+              <img src={service.image} alt={service.title} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 group-hover:scale-110 transition-all duration-700" />
+              <!-- Gradient overlay to ensure text readability -->
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10 p-8 md:p-10 flex flex-col h-full w-full">
+              <!-- Glowing flare inside card -->
+              <div class={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${service.color} rounded-full blur-[80px] opacity-10 group-hover:opacity-30 transition-all duration-500 -mr-10 -mt-10 group-hover:scale-150 pointer-events-none`}></div>
+              
+              <div class="relative w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-auto border border-white/20 overflow-hidden group-hover:border-white/50 transition-all duration-500 shadow-xl">
+                <!-- Icon glow -->
+                <div class={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-60 transition-opacity duration-500`}></div>
+                <div class="relative z-10 transition-transform duration-500 group-hover:scale-110" set:html={service.icon} />
+              </div>
+              
+              <div class="mt-16">
+                <h4 class="text-2xl font-bold mb-4 text-white drop-shadow-md group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/80 transition-all duration-300">
+                  {service.title}
+                </h4>
+                
+                <p class="text-white/80 leading-relaxed relative z-10 group-hover:text-white transition-colors duration-300 text-lg drop-shadow-md">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

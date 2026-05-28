@@ -1,0 +1,113 @@
+---
+const projects = [
+  {
+    title: "Campaña Publicitaria Exterior", category: "Gran Formato",
+    image: "/images/gallery_lona_1.png",
+    bentoClass: "md:col-span-2 md:row-span-2", neon: "cyan"
+  },
+  {
+    title: "Rotulación Fleet 360", category: "Vinil Automotriz",
+    image: "/images/gallery_wrap_1.png",
+    bentoClass: "md:col-span-2 md:row-span-1", neon: "magenta"
+  },
+  {
+    title: "Letreros Acrílico 3D", category: "Señalética",
+    image: "/images/gallery_letrero_1.png",
+    bentoClass: "md:col-span-1 md:row-span-1", neon: "cyan"
+  },
+  {
+    title: "Playeras Premium", category: "Sublimación",
+    image: "/images/gallery_playeras_1.png",
+    bentoClass: "md:col-span-1 md:row-span-1", neon: "magenta"
+  },
+  {
+    title: "Corte Precisión Neón", category: "Plotter",
+    image: "/images/gallery_plotter_1.png",
+    bentoClass: "md:col-span-1 md:row-span-2", neon: "cyan"
+  },
+  {
+    title: "Montaje Arquitectónico", category: "Instalación",
+    image: "/images/gallery_instalacion_1.png",
+    bentoClass: "md:col-span-2 md:row-span-2", neon: "magenta"
+  },
+  {
+    title: "Forrado Corporativo", category: "Interiores",
+    image: "/images/service_vinil.png",
+    bentoClass: "md:col-span-1 md:row-span-1", neon: "cyan"
+  },
+  {
+    title: "Uniformes Oficiales", category: "Textil",
+    image: "/images/service_sublimacion.png",
+    bentoClass: "md:col-span-1 md:row-span-1", neon: "magenta"
+  }
+];
+---
+
+<section id="portafolio" class="py-32 relative overflow-hidden bg-transparent">
+  <div class="max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
+        <h2 class="text-sm font-bold text-white/50 tracking-[0.2em] uppercase">
+          Nuestro Portafolio
+        </h2>
+        <span class="w-2 h-2 rounded-full bg-brand-magenta animate-pulse"></span>
+      </div>
+      <h3 class="text-4xl md:text-5xl font-black mb-6 text-white drop-shadow-lg">
+        Proyectos de Alto Nivel
+      </h3>
+      <p class="text-[#94A3B8] max-w-2xl mx-auto text-lg">
+        Explora la calidad de nuestra producción. Menos palabras, más resultados espectaculares.
+      </p>
+    </div>
+
+    <!-- Tightly Packed Professional Grid (Mathematically Perfect 4x4) -->
+    <div class="grid grid-cols-1 md:grid-cols-4 auto-rows-[280px] gap-2 md:gap-3 p-1">
+      {projects.map((project, index) => (
+        <div class={`group relative overflow-hidden rounded-2xl bg-brand-dark cursor-pointer shadow-lg ${project.bentoClass}`}>
+          
+          <!-- Image Layer -->
+          <img 
+            src={project.image} 
+            alt={project.title}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-in-out group-hover:scale-110 opacity-80 group-hover:opacity-100"
+            loading="lazy"
+            decoding="async"
+          />
+          
+          <!-- Elegant Gradient Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <!-- Subtle Glow on Hover -->
+          <div class={`absolute inset-0 opacity-0 group-hover:opacity-30 mix-blend-overlay transition-opacity duration-700 ${project.neon === 'cyan' ? 'bg-brand-cyan' : 'bg-brand-magenta'}`}></div>
+          
+          <!-- Content Layer -->
+          <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+            
+            <div class="flex items-center gap-2 mb-2 opacity-80 group-hover:opacity-100 transition-opacity">
+              <div class={`w-1.5 h-1.5 rounded-full ${project.neon === 'cyan' ? 'bg-brand-cyan shadow-[0_0_8px_#00e5ff]' : 'bg-brand-magenta shadow-[0_0_8px_#ff00ff]'}`}></div>
+              <span class="text-xs font-bold tracking-widest text-white/70 uppercase">
+                {project.category}
+              </span>
+            </div>
+            
+            <h4 class="text-2xl md:text-3xl font-bold text-white drop-shadow-md">
+              {project.title}
+            </h4>
+          </div>
+          
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-16 text-center relative z-20">
+      <a href="#contacto" class="relative inline-flex items-center justify-center px-10 py-5 text-sm font-bold tracking-widest text-white uppercase rounded-full overflow-hidden group/btn bg-white/5 border border-white/20 hover:border-brand-cyan backdrop-blur-xl transition-all duration-500 shadow-xl hover:shadow-[0_0_30px_rgba(0,229,255,0.3)]">
+        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-cyan/20 to-brand-magenta/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></span>
+        <span class="relative flex items-center gap-3">
+          Cotizar Mi Proyecto
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover/btn:translate-x-2 transition-transform duration-300"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

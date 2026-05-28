@@ -1,0 +1,118 @@
+---
+const faqs = [
+  {
+    q: "¿QUÉ FORMATOS DE ARCHIVO ACEPTAN?",
+    a: "Para máxima calidad en impresión o recorte de vinil, requerimos vectores en formato .AI, .EPS o .PDF (con textos en curvas). Para mapas de bits (imágenes fotográficas para sublimación o lona), resolución mínima de 300 DPI a tamaño real o escala 1:10 en formato .TIFF o .JPG de alta calidad.",
+    color: "brand-cyan"
+  },
+  {
+    q: "¿REALIZAN INSTALACIONES FORÁNEAS?",
+    a: "Sí, nuestro equipo de despliegue tiene capacidad operativa en todo el territorio nacional para instalación de lonas espectaculares, forrado de flotillas corporativas y señalética.",
+    color: "brand-magenta"
+  },
+  {
+    q: "¿CUÁL ES EL TIEMPO DE PRODUCCIÓN?",
+    a: "Depende del volumen y complejidad. Trabajos estándar de recorte de vinil, sublimación o lona en 24-48 horas. Forrados vehiculares completos o estructuras grandes entre 3 a 7 días hábiles.",
+    color: "brand-cyan"
+  },
+  {
+    q: "¿LOS MATERIALES TIENEN GARANTÍA?",
+    a: "Todos nuestros sustratos cuentan con ficha técnica y garantía del fabricante (3M, Avery, Arlon). Ofrecemos garantía de instalación de 6 meses contra desprendimientos prematuros bajo condiciones normales.",
+    color: "brand-magenta"
+  }
+];
+---
+<section class="py-32 relative overflow-hidden bg-transparent">
+  
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="text-center mb-20">
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-brand-cyan"></div>
+        <h2 class="text-xs font-black text-white/60 tracking-[0.4em] uppercase">
+          Soporte Técnico
+        </h2>
+        <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-brand-magenta"></div>
+      </div>
+      <h3 class="text-5xl md:text-6xl font-black text-white tracking-tight drop-shadow-2xl">
+        Preguntas Frecuentes
+      </h3>
+    </div>
+
+    <div class="space-y-6">
+      {faqs.map((faq, i) => (
+        <div class={`relative group faq-container`}>
+          <!-- Glowing background that appears on open -->
+          <div class={`absolute -inset-1 bg-gradient-to-r ${faq.color === 'brand-cyan' ? 'from-brand-cyan/0 via-brand-cyan to-brand-cyan/0' : 'from-brand-magenta/0 via-brand-magenta to-brand-magenta/0'} rounded-2xl blur-lg opacity-0 transition-all duration-700 faq-glow`}></div>
+          
+          <details class="relative bg-brand-dark/80 backdrop-blur-3xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 z-10 faq-details hover:border-white/30">
+            <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 list-none font-bold text-white/80 hover:text-white transition-colors relative z-20">
+              <span class="flex gap-6 items-center text-lg md:text-xl font-bold tracking-wide">
+                <span class={`text-${faq.color} font-black text-2xl opacity-50 faq-number transition-opacity`}>0{i + 1}</span>
+                <span class="drop-shadow-md">{faq.q}</span>
+              </span>
+              <span class={`transition-transform duration-500 faq-icon text-${faq.color} bg-white/5 p-3 rounded-full border border-white/10 shadow-lg`}>
+                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+              </span>
+            </summary>
+            
+            <div class="p-6 md:p-8 pt-0 text-white/80 leading-relaxed relative z-10 text-lg">
+              <div class={`absolute left-10 top-0 bottom-8 w-[2px] bg-gradient-to-b from-${faq.color} to-transparent opacity-50`}></div>
+              <p class="pl-12 pt-4 font-light">
+                {faq.a}
+              </p>
+            </div>
+          </details>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const detailsElements = document.querySelectorAll('.faq-details');
+    
+    detailsElements.forEach(details => {
+      details.addEventListener('toggle', (e) => {
+        const target = e.target as HTMLDetailsElement;
+        const container = target.closest('.faq-container');
+        if (!container) return;
+        
+        const glow = container.querySelector('.faq-glow') as HTMLElement;
+        const icon = container.querySelector('.faq-icon') as HTMLElement;
+        const number = container.querySelector('.faq-number') as HTMLElement;
+        
+        if (target.open) {
+          glow.style.opacity = '0.7';
+          icon.style.transform = 'rotate(180deg)';
+          icon.style.backgroundColor = 'rgba(255,255,255,0.1)';
+          number.style.opacity = '1';
+          target.style.borderColor = 'rgba(255,255,255,0.3)';
+          target.style.backgroundColor = 'rgba(0,0,0,0.9)';
+        } else {
+          glow.style.opacity = '0';
+          icon.style.transform = 'rotate(0deg)';
+          icon.style.backgroundColor = 'rgba(255,255,255,0.05)';
+          number.style.opacity = '0.5';
+          target.style.borderColor = 'rgba(255,255,255,0.1)';
+          target.style.backgroundColor = 'rgba(11, 15, 25, 0.8)'; // brand-dark with opacity
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Create safe custom colors for Tailwind dynamic classes if they don't exist */
+  .text-brand-cyan { color: var(--color-brand-cyan); }
+  .text-brand-magenta { color: var(--color-brand-magenta); }
+  .from-brand-cyan { --tw-gradient-from: var(--color-brand-cyan); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 229, 255, 0)); }
+  .from-brand-magenta { --tw-gradient-from: var(--color-brand-magenta); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 0, 255, 0)); }
+  .to-brand-cyan { --tw-gradient-to: var(--color-brand-cyan); }
+  .to-brand-magenta { --tw-gradient-to: var(--color-brand-magenta); }
+</style>

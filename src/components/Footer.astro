@@ -1,0 +1,235 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer id="neon-footer" class="bg-[#05070A] pt-20 pb-12 relative overflow-hidden border-t border-white/5 group">
+  <!-- Subtle brick texture / dark background -->
+  <div class="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMjBoNDB2LTFIMHZWMTloMzlWMHgtMXYxOUgwdjF6TTE5IDB2MjBIMThWMGgxeiIgZmlsbD0iIzMzMyIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')]"></div>
+  
+  <!-- Massive Neon Ambient Glow (Initially Off, controlled by JS) -->
+  <div id="footer-ambient-glow" class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100vh] bg-gradient-to-t from-brand-magenta/0 via-brand-cyan/0 to-transparent blur-[120px] rounded-full pointer-events-none z-0 transition-all duration-1000"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      
+      <!-- Left Column: Branding and Intro -->
+      <div class="col-span-1 md:col-span-2">
+        <div class="mb-6">
+          <a href="#" class="inline-block text-4xl font-black tracking-tighter uppercase relative z-10 select-none neon-text neon-off" data-color="magenta">
+            Sip<span class="text-brand-cyan" style="color: inherit; text-shadow: inherit;">Viba</span>
+          </a>
+        </div>
+        
+        <p class="text-white/60 text-sm leading-relaxed mb-8 max-w-sm neon-text neon-off" data-color="white">
+          Somos el motor detrás de las marcas que no pasan desapercibidas. Impresión, diseño y ejecución con precisión milimétrica.
+        </p>
+        
+        <!-- Social Links -->
+        <div class="flex space-x-4">
+          <a href="https://www.instagram.com/sipviba/" target="_blank" rel="noopener noreferrer" class="group/icon relative flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 overflow-hidden transition-all duration-300 hover:border-brand-magenta hover:shadow-[0_0_15px_rgba(255,0,255,0.4)] neon-border neon-off">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/50 group-hover/icon:text-white transition-colors relative z-10"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="group/icon relative flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 overflow-hidden transition-all duration-300 hover:border-brand-cyan hover:shadow-[0_0_15px_rgba(0,229,255,0.4)] neon-border neon-off">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/50 group-hover/icon:text-white transition-colors relative z-10"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation (Open, Airy Layout) -->
+      <div>
+        <h4 class="font-black tracking-widest uppercase mb-8 text-sm flex items-center gap-2 neon-text neon-off" data-color="cyan">
+          <span class="w-1.5 h-1.5 bg-brand-cyan rounded-full neon-dot neon-off"></span> Explorar
+        </h4>
+        <ul class="space-y-6">
+          <li>
+            <a href="#servicios" class="group relative inline-block text-lg font-bold text-white/50 hover:text-white transition-colors duration-300 neon-text neon-off" data-color="white">
+              Servicios de Impresión
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-cyan transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#portafolio" class="group relative inline-block text-lg font-bold text-white/50 hover:text-white transition-colors duration-300 neon-text neon-off" data-color="white">
+              Nuestro Portafolio
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-magenta transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#proceso" class="group relative inline-block text-lg font-bold text-white/50 hover:text-white transition-colors duration-300 neon-text neon-off" data-color="white">
+              Metodología
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-cyan transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#contacto" class="group relative inline-block text-lg font-bold text-white/50 hover:text-white transition-colors duration-300 neon-text neon-off" data-color="white">
+              Cotizar Proyecto
+              <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-magenta transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Info (Open, Elegant Typography) -->
+      <div>
+        <h4 class="font-black tracking-widest uppercase mb-8 text-sm flex items-center gap-2 neon-text neon-off" data-color="magenta">
+          <span class="w-1.5 h-1.5 bg-brand-magenta rounded-full neon-dot neon-off"></span> Contacto
+        </h4>
+        <ul class="space-y-8">
+          <li class="group cursor-default">
+            <span class="block text-white/30 text-xs font-bold tracking-[0.2em] uppercase mb-2 group-hover:text-brand-magenta transition-colors duration-300">Sede Central</span>
+            <span class="text-white/80 text-xl font-light neon-text neon-off group-hover:text-white transition-colors" data-color="white">
+              Ciudad de México, CDMX
+            </span>
+          </li>
+          <li class="group cursor-default">
+            <span class="block text-white/30 text-xs font-bold tracking-[0.2em] uppercase mb-2 group-hover:text-brand-cyan transition-colors duration-300">Línea Directa</span>
+            <span class="text-white/80 text-xl font-light neon-text neon-off group-hover:text-white transition-colors" data-color="white">
+              +52 1 123 456 7890
+            </span>
+          </li>
+          <li class="group cursor-default">
+            <span class="block text-white/30 text-xs font-bold tracking-[0.2em] uppercase mb-2 group-hover:text-brand-magenta transition-colors duration-300">Email</span>
+            <span class="text-white/80 text-xl font-light neon-text neon-off group-hover:text-white transition-colors" data-color="white">
+              contacto@sipviba.com
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono border-t border-white/10 pt-6 mt-8 neon-border neon-off border-t-only">
+      <p class="text-white/30 tracking-widest font-sans neon-text neon-off" data-color="white">
+        &copy; {year} SIPVIBA. TODOS LOS DERECHOS RESERVADOS.
+      </p>
+      <div class="text-white/20 tracking-widest font-sans uppercase flex items-center gap-2 neon-text neon-off" data-color="cyan">
+        <span class="w-1.5 h-1.5 bg-brand-cyan rounded-full animate-pulse"></span>
+        Estudio Creativo
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const footer = document.getElementById('neon-footer');
+    const ambientGlow = document.getElementById('footer-ambient-glow');
+    
+    if (!footer || !ambientGlow) return;
+
+    // Elementos a encender
+    const neonTexts = footer.querySelectorAll('.neon-text');
+    const neonBorders = footer.querySelectorAll('.neon-border');
+    const neonDots = footer.querySelectorAll('.neon-dot');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Encender todos los textos
+          neonTexts.forEach(el => {
+            el.classList.remove('neon-off');
+            el.classList.add('neon-turn-on');
+          });
+          
+          // Encender bordes
+          neonBorders.forEach(el => {
+            el.classList.remove('neon-off');
+            el.classList.add('neon-border-on');
+          });
+          
+          // Encender puntos
+          neonDots.forEach(el => {
+            el.classList.remove('neon-off');
+            el.classList.add('neon-dot-on');
+          });
+          
+          // Encender brillo ambiente trasero
+          setTimeout(() => {
+            ambientGlow.classList.remove('from-brand-magenta/0', 'via-brand-cyan/0');
+            ambientGlow.classList.add('from-brand-magenta/10', 'via-brand-cyan/5');
+          }, 400);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(footer);
+  });
+</script>
+
+<style>
+  /* Base Off State */
+  .neon-off {
+    color: transparent !important;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+    text-shadow: none !important;
+    opacity: 0.3;
+    border-color: rgba(255,255,255,0.02) !important;
+    background-color: transparent !important;
+  }
+  
+  /* Text Turn On Sequences */
+  @keyframes neon-ignition-cyan {
+    0%, 10%, 20%, 30%, 35%, 45% { color: transparent; text-shadow: none; opacity: 0.3; }
+    5%, 15%, 25%, 32%, 40% { color: #fff; text-shadow: 0 0 2px #fff, 0 0 8px var(--color-brand-cyan); opacity: 1; -webkit-text-stroke: 0px; }
+    50% { color: #fff; text-shadow: 0 0 4px #fff, 0 0 12px var(--color-brand-cyan); opacity: 1; -webkit-text-stroke: 0px; }
+    55%, 60% { color: transparent; text-shadow: none; opacity: 0.3; }
+    100% { color: #fff; text-shadow: 0 0 2px #fff, 0 0 6px var(--color-brand-cyan); opacity: 1; -webkit-text-stroke: 0px; }
+  }
+
+  @keyframes neon-ignition-magenta {
+    0%, 12%, 18%, 28%, 38%, 48% { color: transparent; text-shadow: none; opacity: 0.3; }
+    7%, 16%, 22%, 35%, 42% { color: #fff; text-shadow: 0 0 2px #fff, 0 0 8px var(--color-brand-magenta); opacity: 1; -webkit-text-stroke: 0px; }
+    50% { color: #fff; text-shadow: 0 0 4px #fff, 0 0 12px var(--color-brand-magenta); opacity: 1; -webkit-text-stroke: 0px; }
+    53%, 62% { color: transparent; text-shadow: none; opacity: 0.3; }
+    100% { color: #fff; text-shadow: 0 0 2px #fff, 0 0 6px var(--color-brand-magenta); opacity: 1; -webkit-text-stroke: 0px; }
+  }
+
+  @keyframes neon-ignition-white {
+    0%, 8%, 22%, 30%, 42% { color: transparent; text-shadow: none; opacity: 0.2; }
+    5%, 15%, 28%, 38% { color: #fff; text-shadow: 0 0 2px rgba(255,255,255,0.5); opacity: 0.8; -webkit-text-stroke: 0px; }
+    100% { color: rgba(255,255,255,0.8); text-shadow: none; opacity: 1; -webkit-text-stroke: 0px; }
+  }
+
+  /* Continual subtle flicker */
+  @keyframes neon-subtle-flicker {
+    0%, 100% { opacity: 1; }
+    98% { opacity: 0.85; }
+    99% { opacity: 0.7; }
+  }
+
+  /* Applying animations based on data attribute */
+  .neon-turn-on[data-color="cyan"] {
+    animation: neon-ignition-cyan 1.2s ease-out forwards, neon-subtle-flicker 4s infinite 1.2s;
+    color: #fff;
+    -webkit-text-stroke: 0px transparent;
+  }
+  .neon-turn-on[data-color="magenta"] {
+    animation: neon-ignition-magenta 1.4s ease-out forwards, neon-subtle-flicker 5s infinite 1.4s;
+    color: #fff;
+    -webkit-text-stroke: 0px transparent;
+  }
+  .neon-turn-on[data-color="white"] {
+    animation: neon-ignition-white 1.6s ease-out forwards;
+    color: rgba(255,255,255,0.7);
+    -webkit-text-stroke: 0px transparent;
+  }
+
+  /* Borders and Dots */
+  @keyframes neon-border-ignition {
+    100% { border-color: rgba(255,255,255,0.1); box-shadow: 0 0 10px rgba(0,229,255,0.1); }
+  }
+  .neon-border-on {
+    animation: neon-border-ignition 1.5s ease-out forwards;
+  }
+  .neon-border-on.border-t-only {
+    animation: none;
+    border-top-color: rgba(255,255,255,0.1) !important;
+  }
+  
+  .neon-dot-on {
+    background-color: currentColor !important;
+    box-shadow: 0 0 10px currentColor;
+    opacity: 1;
+  }
+</style>

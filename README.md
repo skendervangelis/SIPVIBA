@@ -1,46 +1,64 @@
-# Astro Starter Kit: Basics
+# 🚀 SipViba Print & Design Studio
 
-```sh
-npm create astro@latest -- --template basics
+![SipViba Preview](https://via.placeholder.com/1200x630/0B0F19/00E5FF?text=SipViba+Print+%26+Design+Studio)
+
+> Un ecosistema web de alto rendimiento y diseño *Premium Agency* para un estudio de impresión, diseño y señalética en la Ciudad de México. Desarrollado con el ecosistema de **Astro** y **TailwindCSS**.
+
+## 🎨 Filosofía de Diseño: Glassmorphism Neón
+El proyecto está conceptualizado como un lienzo fotográfico oscuro, inspirado en interfaces de alta tecnología y laboratorios creativos.
+- **Micro-interacciones completas:** Cursor personalizado reactivo magnéticamente a los elementos (Gota de tinta + Guía de registro de impresión).
+- **Glassmorphism avanzado:** Componentes suspendidos con `backdrop-blur` que logran efectos de espejo y cristal sobre videos e imágenes de alto contraste.
+- **Luz fluida (Plasma):** Efectos dinámicos en el fondo estilo "Aurora Boreal" renderizados puramente en CSS.
+
+## ⚡ Performance "Zero-JS"
+Esta aplicación utiliza el patrón **Island Architecture** de Astro para reducir drásticamente el peso del JavaScript.
+- **Puntaje estimado Lighthouse:** 98 - 100
+- Todo el HTML se renderiza en el servidor (SSG), lo que permite tiempos de carga milisegundos.
+- Se ha aplicado `loading="lazy"` y `decoding="async"` a todas las imágenes "below the fold".
+
+## 🔎 SEO Localizado (Search Engine Optimization)
+Diseñado para dominar la búsqueda local en Google (CDMX).
+- **JSON-LD Schema (LocalBusiness):** La meta-estructura detalla los servicios exactos de impresión y rotulación.
+- **Tarjetas Sociales (Open Graph & Twitter Cards):** Al compartir el sitio, la previsualización es limpia, atractiva y coherente en cualquier plataforma de chat o red social.
+
+## 🛠️ Stack Tecnológico
+- **Framework:** [Astro](https://astro.build/) (v4.x)
+- **Estilos:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animaciones:** CSS Keyframes personalizados y JS vainilla ultra-ligero para cursores e intersecciones (`IntersectionObserver`).
+- **Accesibilidad (a11y):** Semántica de árbol perfecta y ocultación activa de adornos para lectores de pantalla.
+
+---
+
+## 💻 Desarrollo Local
+
+Para inicializar este proyecto en tu entorno local:
+
+1. Clona el repositorio
+```bash
+git clone https://github.com/tu-usuario/sipviba.git
+cd sipviba
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+2. Instala las dependencias
+```bash
+npm install
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+3. Levanta el servidor de desarrollo local
+```bash
+npm run dev
+```
+La aplicación estará disponible en `http://localhost:4321`.
 
-## 🧞 Commands
+## 📦 Comandos Disponibles
 
-All commands are run from the root of the project, from a terminal:
+| Comando | Acción |
+| :--- | :--- |
+| `npm install` | Instala todas las dependencias |
+| `npm run dev` | Inicia un servidor de desarrollo local `localhost:4321` |
+| `npm run build` | Compila el sitio para producción en la carpeta `dist/` |
+| `npm run preview` | Previsualiza el proyecto compilado antes de mandarlo a producción |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+*Diseñado y desarrollado para brillar en un portafolio Frontend.*

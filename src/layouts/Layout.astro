@@ -1,23 +1,154 @@
+---
+import '../styles/global.css';
+import InkCursor from '../components/InkCursor.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "SipViba - Agencia de Publicidad, Impresión de Lona, Vinil y Señalética." } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- Google Fonts: Outfit -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+		
+		<!-- SEO & Meta Tags -->
+		<title>{title}</title>
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href="https://sipviba.com" />
+		<meta name="keywords" content="impresión gran formato, diseño gráfico, rotulación, vinil, lona publicitaria, agencia creativa, señalética, sublimación, Ciudad de México" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://sipviba.com" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://sipviba.com/og-image.jpg" />
+		<meta property="og:site_name" content="SipViba" />
+		<meta property="og:locale" content="es_MX" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://sipviba.com" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content="https://sipviba.com/og-image.jpg" />
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json" is:inline>
+			{
+				"@context": "https://schema.org",
+				"@type": "LocalBusiness",
+				"name": "SipViba - Estudio de Producción y Diseño",
+				"image": "https://sipviba.com/og-image.jpg",
+				"description": "Agencia de publicidad de alto nivel especializada en impresión de gran formato, lona, vinil, señalética y diseño creativo.",
+				"@id": "https://sipviba.com",
+				"url": "https://sipviba.com",
+				"telephone": "+5211234567890",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "Av. Principal 123",
+					"addressLocality": "Ciudad de México",
+					"addressRegion": "CDMX",
+					"postalCode": "00000",
+					"addressCountry": "MX"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": 19.4326,
+					"longitude": -99.1332
+				},
+				"sameAs": [
+					"https://www.facebook.com/sipviba",
+					"https://www.instagram.com/sipviba"
+				]
+			}
+		</script>
 	</head>
-	<body>
+	<body class="bg-brand-dark text-white font-sans overflow-x-hidden">
 		<slot />
+
+		<!-- Floating WhatsApp Button -->
+		<a 
+			href="https://wa.me/5211234567890" 
+			target="_blank" 
+			rel="noopener noreferrer" 
+			class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 hover:shadow-[#25D366]/50 transition-all duration-300 group"
+			aria-label="Contactar por WhatsApp"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:animate-pulse">
+				<path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+				<path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
+				<path d="M14 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
+				<path d="M9.5 13.5c.5 1 1.5 1 2.5 1s2-.5 2.5-1" />
+			</svg>
+		</a>
+
+		<!-- Scroll Animation Script for Reveal Elements -->
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const observerOptions = {
+					root: null,
+					rootMargin: '0px',
+					threshold: 0.15
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('is-visible');
+						}
+					});
+				}, observerOptions);
+
+				const revealElements = document.querySelectorAll('.reveal');
+				revealElements.forEach((el) => observer.observe(el));
+
+				// Scroll Speed CMYK Glitch Logic
+				let lastScrollY = window.scrollY;
+				let ticking = false;
+				let glitchTimeout;
+				
+				const handleScroll = () => {
+					const currentScrollY = window.scrollY;
+					const scrollSpeed = Math.abs(currentScrollY - lastScrollY);
+					
+					// If scrolling fast enough, trigger glitch
+					if (scrollSpeed > 30) {
+						const glitchElements = document.querySelectorAll('.cmyk-glitch');
+						glitchElements.forEach(el => el.classList.add('is-glitching'));
+						
+						clearTimeout(glitchTimeout);
+						glitchTimeout = setTimeout(() => {
+							glitchElements.forEach(el => el.classList.remove('is-glitching'));
+						}, 150);
+					}
+					
+					lastScrollY = currentScrollY;
+					ticking = false;
+				};
+
+				window.addEventListener('scroll', () => {
+					if (!ticking) {
+						window.requestAnimationFrame(handleScroll);
+						ticking = true;
+					}
+				}, { passive: true });
+			});
+		</script>
+
+		<InkCursor />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

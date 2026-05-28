@@ -1,0 +1,148 @@
+---
+---
+
+<div id="ink-cursor-container" class="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:block mix-blend-screen" style="transform: translate(0px, 0px);">
+  
+  <!-- Print Registration Mark (Guía de impresión) -->
+  <div class="absolute top-[70%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center pointer-events-none transition-transform duration-300" id="reg-mark">
+    <svg viewBox="0 0 100 100" class="w-full h-full stroke-white/60" stroke-width="2.5" fill="none" id="reg-svg">
+      <circle cx="50" cy="50" r="30" />
+      <line x1="50" y1="5" x2="50" y2="40" />
+      <line x1="50" y1="60" x2="50" y2="95" />
+      <line x1="5" y1="50" x2="40" y2="50" />
+      <line x1="60" y1="50" x2="95" y2="50" />
+    </svg>
+  </div>
+
+  <!-- The Ink Drop SVG -->
+  <div id="ink-drop" class="relative flex items-center justify-center w-8 h-8 z-10" style="transform-origin: 50% 70%;">
+    <svg viewBox="0 0 100 100" class="w-full h-full fill-brand-cyan drop-shadow-[0_0_10px_rgba(0,229,255,0.8)] transition-colors duration-300" id="ink-svg">
+      <!-- A classic teardrop / ink drop shape -->
+      <path d="M50 5 C50 5, 10 50, 10 70 C10 92, 28 100, 50 100 C72 100, 90 92, 90 70 C90 50, 50 5, 50 5 Z" />
+    </svg>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('ink-cursor-container');
+    const drop = document.getElementById('ink-drop');
+    const svg = document.getElementById('ink-svg');
+    const regSvg = document.getElementById('reg-svg');
+    const regMark = document.getElementById('reg-mark');
+
+    if (!container || !drop || !svg || window.matchMedia("(pointer: coarse)").matches) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+    
+    // Variables for velocity, rotation, and hover state
+    let velX = 0;
+    let velY = 0;
+    let isHovering = false;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Magnetic interaction color change
+    const magneticElements = document.querySelectorAll('.magnetic, a, button, input, select, textarea');
+    magneticElements.forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        isHovering = true;
+        svg.classList.remove('fill-brand-cyan', 'drop-shadow-[0_0_10px_rgba(0,229,255,0.8)]');
+        svg.classList.add('fill-brand-magenta', 'drop-shadow-[0_0_10px_rgba(255,0,85,0.8)]');
+        
+        if(regSvg) {
+          regSvg.classList.remove('stroke-white/60');
+          regSvg.classList.add('stroke-brand-magenta');
+        }
+        if(regMark) {
+          regMark.classList.add('scale-150', 'rotate-45');
+        }
+      });
+      el.addEventListener('mouseleave', () => {
+        isHovering = false;
+        svg.classList.remove('fill-brand-magenta', 'drop-shadow-[0_0_10px_rgba(255,0,85,0.8)]');
+        svg.classList.add('fill-brand-cyan', 'drop-shadow-[0_0_10px_rgba(0,229,255,0.8)]');
+        
+        if(regSvg) {
+          regSvg.classList.remove('stroke-brand-magenta');
+          regSvg.classList.add('stroke-white/60');
+        }
+        if(regMark) {
+          regMark.classList.remove('scale-150', 'rotate-45');
+        }
+      });
+    });
+
+    const render = () => {
+      // Smooth following (easing)
+      const ease = 0.2;
+      
+      // Calculate distance between current cursor position and mouse
+      const dx = mouseX - cursorX;
+      const dy = mouseY - cursorY;
+      
+      cursorX += dx * ease;
+      cursorY += dy * ease;
+      
+      // Calculate velocity
+      velX = dx * ease;
+      velY = dy * ease;
+      
+      const speed = Math.sqrt(velX * velX + velY * velY);
+      
+      // Calculate angle of movement to rotate the drop so it points in the direction of travel
+      // Math.atan2 returns angle in radians. We convert to degrees.
+      // We add 90 degrees because our SVG drop points UP natively (0 degrees).
+      const angle = Math.atan2(velY, velX) * (180 / Math.PI) + 90;
+
+      // Squash and stretch effect based on speed
+      // The faster it moves, the more it stretches along the Y axis and squashes along X
+      const stretch = 1 + (speed * 0.015);
+      const squash = 1 - (speed * 0.005);
+      
+      // Clamp values to avoid extreme distortions
+      const finalStretch = Math.min(stretch, 2.0);
+      const finalSquash = Math.max(squash, 0.5);
+
+      // Determine scale multiplier based on hover state
+      const hoverScale = isHovering ? 1.3 : 1;
+
+      // Translate the container to the mouse position (centered)
+      container.style.transform = `translate(${cursorX - 16}px, ${cursorY - 16}px)`;
+      
+      // Apply rotation and scale to the drop itself
+      // If speed is very low, reset rotation smoothly to avoid jitter
+      if (speed > 1) {
+        drop.style.transform = `rotate(${angle}deg) scale(${finalSquash * hoverScale}, ${finalStretch * hoverScale})`;
+        drop.style.transition = 'none'; // Remove transition when actively moving
+      } else {
+        // Slowly return to normal shape and 0 degree rotation (pointing up) when resting
+        drop.style.transform = `rotate(0deg) scale(${hoverScale}, ${hoverScale})`;
+        drop.style.transition = 'transform 0.2s ease-out';
+      }
+
+      requestAnimationFrame(render);
+    };
+
+    requestAnimationFrame(render);
+  });
+</script>
+
+<style>
+  /* Hide the default cursor */
+  @media (pointer: fine) {
+    :global(body) {
+      cursor: none;
+    }
+    :global(a), :global(button), :global(select), :global(input), :global(textarea) {
+      cursor: none;
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+const partners = [
+  "NEXUS CORP", "CYBER_DYNAMICS", "AERO_SYS", "NEO_TOKYO_TECH",
+  "STELLAR_INDUSTRIES", "QUANTUM_LOGICS", "OMNI_CORP", "VANGUARD_SEC"
+];
+---
+<section class="py-12 border-y border-brand-cyan/20 bg-brand-dark overflow-hidden relative">
+  <!-- Glowing edge gradients -->
+  <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-dark to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-dark to-transparent z-10 pointer-events-none"></div>
+  
+  <div class="flex">
+    <div class="animate-marquee flex whitespace-nowrap items-center">
+      {partners.map(partner => (
+        <div class="mx-12 group cursor-default">
+          <span class="font-mono text-2xl font-bold text-white/20 group-hover:text-brand-cyan transition-colors duration-300 drop-shadow-[0_0_0_rgba(0,229,255,0)] group-hover:drop-shadow-[0_0_15px_rgba(0,229,255,0.8)] tracking-widest">
+            {partner}
+          </span>
+        </div>
+      ))}
+      <!-- Duplicate for seamless loop -->
+      {partners.map(partner => (
+        <div class="mx-12 group cursor-default">
+          <span class="font-mono text-2xl font-bold text-white/20 group-hover:text-brand-cyan transition-colors duration-300 drop-shadow-[0_0_0_rgba(0,229,255,0)] group-hover:drop-shadow-[0_0_15px_rgba(0,229,255,0.8)] tracking-widest">
+            {partner}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+    /* ensure it has enough width to scroll properly */
+    width: max-content;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
