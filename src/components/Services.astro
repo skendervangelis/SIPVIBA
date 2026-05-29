@@ -68,7 +68,7 @@ const services = [
             
             <!-- Service Image Background -->
             <div class="absolute inset-0 z-0 overflow-hidden mix-blend-overlay">
-              <img src={service.image} alt={service.title} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 group-hover:scale-110 transition-all duration-700" />
+              <img src={`${import.meta.env.BASE_URL}${service.image.substring(1)}`} alt={service.title} loading="lazy" decoding="async" class="w-full h-full object-cover opacity-40 group-hover:opacity-80 group-hover:scale-110 transition-all duration-700" />
               <!-- Gradient overlay to ensure text readability -->
               <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent"></div>
             </div>
